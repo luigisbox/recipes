@@ -1,6 +1,6 @@
 #!/bin/bash
  
-export PWD=`pwd`
+BACK=`pwd`
 export ELASTICSEARCH_VERSION="1.4.3"
 export ELASTICSEARCH_PORT="9201"
 export ELASTICSEARCH_URL="localhost:${ELASTICSEARCH_PORT}"
@@ -15,4 +15,4 @@ echo "script.disable_dynamic: false" >> config/elasticsearch.yml
 bin/elasticsearch -d
 sleep 5
  
-cd $PWD
+cd $BACK
