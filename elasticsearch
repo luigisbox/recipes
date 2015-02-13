@@ -1,6 +1,6 @@
 #!/bin/bash
  
-PWD=`pwd`
+export PWD=`pwd`
 export ELASTICSEARCH_VERSION="1.4.3"
 export ELASTICSEARCH_PORT="9201"
 export ELASTICSEARCH_URL="localhost:${ELASTICSEARCH_PORT}"
