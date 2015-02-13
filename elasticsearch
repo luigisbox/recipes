@@ -6,7 +6,7 @@ ELASTICSEARCH_PORT="9201"
  
 curl -sS https://download.elasticsearch.org/elasticsearch/elasticsearch/elasticsearch-${ELASTICSEARCH_VERSION}.tar.gz | tar xz
 cd elasticsearch-${ELASTICSEARCH_VERSION}
-bin/plugin -install elasticsearch/elasticsearch-lang-mvel/${ELASTICSEARCH_VERSION}
+bin/plugin -install elasticsearch/elasticsearch-lang-mvel/1.4.1
  
 echo "http.port: ${ELASTICSEARCH_PORT}" >> config/elasticsearch.yml
 echo "script.disable_dynamic: false" >> config/elasticsearch.yml
