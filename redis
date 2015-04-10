@@ -8,9 +8,10 @@ export REDIS_URL="localhost:${REDIS_PORT}"
 wget http://download.redis.io/releases/redis-${REDIS_VERSION}.tar.gz
 tar xzf redis-${REDIS_VERSION}.tar.gz
 cd redis-${REDIS_VERSION}
-make
+make 
 
-src/redis-server
-sleep 5
- 
+echo "daemonize yes " >> redis.conf
+src/redis-server redis.conf
+sleep 3
+
 cd $BACK
