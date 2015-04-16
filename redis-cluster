@@ -1,0 +1,25 @@
+#!/bin/bash
+ 
+BACK=`pwd`
+export REDIS_VERSION="3.0.0"
+
+wget https://github.com/luigisbox/recipes/raw/master/redis-cluster.tar.gz
+tar xzf redis-cluster.tar.gz
+
+wget http://download.redis.io/releases/redis-${REDIS_VERSION}.tar.gz
+tar xzf redis-${REDIS_VERSION}.tar.gz
+cd redis-${REDIS_VERSION}
+make 
+
+src/redis-server $BACK/redis-cluster/nodes/8000/redis.conf
+src/redis-server $BACK/redis-cluster/nodes/8001/redis.conf
+src/redis-server $BACK/redis-cluster/nodes/8002/redis.conf
+src/redis-server $BACK/redis-cluster/nodes/8003/redis.conf
+src/redis-server $BACK/redis-cluster/nodes/8004/redis.conf
+src/redis-server $BACK/redis-cluster/nodes/8005/redis.conf
+
+gem install redis
+
+echo "yes" | ruby $BACK/redis-cluster/redis-trib.rb create --replicas 1 127.0.0.1:8000 127.0.0.1:8001 127.0.0.1:8002 127.0.0.1:8003 127.0.0.1:8004 127.0.0.1:8005
+
+cd $BACK
