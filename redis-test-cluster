@@ -3,11 +3,11 @@
 BACK=`pwd`
 export REDIS_VERSION="3.0.0"
 
+curl -sS https://raw.githubusercontent.com/luigisbox/recipes/master/redis-cluster.tar.gz | tar xz
+
 curl -sS http://download.redis.io/releases/redis-${REDIS_VERSION}.tar.gz | tar xz
 cd redis-${REDIS_VERSION}
 make 
-
-curl -sS https://raw.githubusercontent.com/luigisbox/recipes/master/redis-cluster.tar.gz | tar xz
 
 src/redis-server $BACK/redis-cluster/nodes/8000/redis.conf
 src/redis-server $BACK/redis-cluster/nodes/8001/redis.conf
