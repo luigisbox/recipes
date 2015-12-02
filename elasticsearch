@@ -1,16 +1,15 @@
 #!/bin/bash
  
 BACK=`pwd`
-export ELASTICSEARCH_VERSION="1.4.3"
+export ELASTICSEARCH_VERSION="2.1.0"
 export ELASTICSEARCH_PORT="9201"
 export ELASTICSEARCH_URL="localhost:${ELASTICSEARCH_PORT}"
  
 curl -sS https://download.elasticsearch.org/elasticsearch/elasticsearch/elasticsearch-${ELASTICSEARCH_VERSION}.tar.gz | tar xz
 cd elasticsearch-${ELASTICSEARCH_VERSION}
-bin/plugin -install elasticsearch/elasticsearch-lang-mvel/1.4.1
- 
+
 echo "http.port: ${ELASTICSEARCH_PORT}" >> config/elasticsearch.yml
-echo "script.disable_dynamic: false" >> config/elasticsearch.yml
+echo "script.inline: on" >> config/elasticsearch.yml
  
 bin/elasticsearch -d
 sleep 5
